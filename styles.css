@@ -1,0 +1,491 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font Face */
+@font-face {
+    font-family: 'FUGUE';
+    src: url('fonts/FUGUE_HEADLINE.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FUGUE';
+    src: url('fonts/FUGUE_REGULAR.OTF') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'FUGUE';
+    color: white;
+    background-color: black;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    cursor: url('images/cursor\ \(2\).png'), auto;
+
+}
+.header {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Высота блока на весь экран */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.header .fullscreen-image {
+    position: absolute; /* Фиксируем изображение внутри header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполнение без искажений */
+    z-index: 1; /* Устанавливаем изображение ниже текста */
+}
+
+.header-content {
+    position: absolute; /* Размещаем содержимое поверх изображения */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Содержимое поверх изображения */
+}
+.header-logo {
+    position: absolute;
+    top: 229px; /* Расположение от верхнего края */
+    left: 150px; /* Расположение от левого края */
+    width: 185px; /* Размер логотипа */
+    height: auto; /* Сохраняем пропорции */
+    z-index: 3; /* Логотип поверх изображения */
+    animation: spin 4s linear infinite; /* Анимация вращения */
+}
+
+/* Анимация вращения */
+@keyframes spin {
+    from {
+        transform: rotate(0deg); /* Начальная позиция */
+    }
+    to {
+        transform: rotate(360deg); /* Полный оборот */
+    }
+}
+/* Анимация картинки */
+.animated-image {
+    position: absolute;
+    top: -50%; /* Начальное положение за пределами экрана */
+    left: 46%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Центрируем относительно своей ширины */
+    width: 200px; /* Размер картинки */
+    height: auto; /* Сохраняем пропорции */
+    z-index: 3; /* Поверх других элементов */
+    animation: moveToCenter 3s ease-in-out infinite, spin 2s linear infinite; /* Комбинируем две анимации */
+}
+
+/* Анимация движения */
+@keyframes moveToCenter {
+    0% {
+        top: -50%; /* Начальная позиция (вне экрана сверху) */
+    }
+    50% {
+        top: 85%; /* Центр экрана */
+    }
+    100% {
+        top: -50%; /* Возврат к начальной позиции */
+    }
+}
+
+/* Анимация вращения */
+@keyframes spin {
+    0% {
+        transform: translateX(-50%) rotate(0deg); /* Начальное состояние */
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg); /* Полный оборот */
+    }
+}
+
+/* Заголовки */
+.header-title {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* NEW */
+.header-title .new {
+    position: absolute;
+    top: 14%; /* Слева сверху */
+    left: 15%;
+    font-size: 15rem;
+    color: white;
+}
+
+/* SAMURAI */
+.header-title .samurai {
+    position: absolute;
+    top: 46.7%; /* По центру слева */
+    left: 5%;
+    transform: translateY(-50%);
+    font-size: 15rem;
+    color: white;
+}
+
+/* SCHOOL */
+.header-title .school {
+    position: absolute;
+    top: 46.7%; /* По центру справа */
+    right: 5%;
+    transform: translateY(-50%);
+    font-size: 15rem;
+    color: white;
+    text-align: right;
+}
+
+/* DZEN */
+.header-title .dzen {
+    position: absolute;
+    bottom: 20.5%; /* Справа снизу */
+    right: 15%;
+    font-size: 15rem;
+    color: white;
+    text-align: right;
+}
+/* TEXT BLOCK */
+.text-block {
+    position: absolute; /* Абсолютное позиционирование */
+    top: calc(100vh + 0px); /* Располагаем блок на 20px ниже нижней границы блока header */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Сдвигаем блок, чтобы центр совпал с центром страницы */
+    display: flex; /* Flexbox для внутреннего содержимого */
+    justify-content: space-between; /* Текст и изображение на одной линии */
+    align-items: center; /* Вертикальное выравнивание внутри блока */
+    padding: 40px;
+    max-width: 1200px; /* Максимальная ширина блока */
+    z-index: 1; /* Контент поверх фона */
+    width: 100%; /* Занимает всю ширину */
+}
+
+/* Прямоугольник позади блока */
+.text-block::before {
+    content: "";
+    position: absolute;
+    top: 0; /* Прямоугольник начинается сверху блока */
+    left: 0; /* Прямоугольник совпадает с началом блока */
+    width: 100%; /* Прямоугольник покрывает весь блок */
+    height: 100%; /* Высота прямоугольника совпадает с высотой блока */
+    background-color: #0021A4; /* Синий цвет */
+    border-radius: 20px; /* Скругленные углы */
+    z-index: -1; /* Прямоугольник позади контента */
+}
+
+/* Текстовый контент */
+.text-content {
+    max-width: 50%; /* Ограничиваем ширину текста */
+    z-index: 2; /* Контент поверх фона */
+}
+
+.text-content h2 {
+    font-size: 3rem; /* Размер заголовка */
+    margin-bottom: 1.5rem;
+    color: white; /* Цвет текста */
+}
+
+.text-content p {
+    font-size: 1.5rem; /* Размер текста */
+    line-height: 1.6;
+    letter-spacing: 1px;
+    line-height: 25px;
+    color: white;
+}
+
+/* Изображение */
+.text-block .illustration {
+    width: 40%; /* Изображение занимает 40% ширины */
+    height: auto;
+    z-index: 2; /* Изображение поверх фона */
+}
+/* TOPICS SECTION */
+.topics {
+    position: relative;
+    text-align: center;
+    margin: 100px auto;
+}
+
+.topics .fullscreen-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Изображение заполняет весь блок */
+}
+
+.topics .topics-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Заголовки располагаются вертикально */
+    justify-content: center; /* Центрируем заголовки по вертикали */
+    align-items: center; /* Центрируем заголовки по горизонтали */
+    z-index: 2; /* Поверх изображения */
+    text-align: center; /* Центрируем текст */
+}
+
+.topics h3 {
+    margin: 1rem 0; /* Расстояние между заголовками */
+    font-size: 7rem; /* Размер шрифта */
+    color: #ffffff; /* Белый цвет */
+    text-transform: uppercase; /* Заглавные буквы */
+    position: relative; /* Позволяем использовать смещение для индивидуального позиционирования */
+}
+
+/* Уникальные позиции для каждого заголовка */
+.topics .kungfu {
+    top: -6.7%; /* Смещаем выше стандартной позиции */
+    right: -2.6%; /* Смещаем влево */
+}
+
+.topics .meditation {
+    top: -3%; /* Смещаем ниже стандартной позиции */
+    right: -5.7%; /* Смещаем вправо */
+}
+
+.topics .teaceremony {
+    top: 0.7%; /* Смещаем ещё ниже */
+    right: -1.7%; /* Смещаем влево */
+}
+
+.topics .japanesephilosophy {
+    top: 6.5%; /* Смещаем ближе к нижнему краю */
+    right: 1%; /* Смещаем вправо */
+    font-size: 6.5rem;
+}
+.corner-image {
+    position: absolute;
+    width: 200px; /* Размер картинки */
+    height: 800px;
+    object-fit: cover; /* Сохраняем пропорции */
+    z-index: 3; /* Поверх всего остального */
+    animation: pulse 2s infinite; /* Пульсация бесконечно */
+}
+
+/* Анимация пульсации */
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Исходный размер */
+    }
+    50% {
+        transform: scale(1.1); /* Увеличение на 10% */
+    }
+    100% {
+        transform: scale(1); /* Возвращение к исходному размеру */
+    }
+}
+/* Позиции для каждого изображения */
+.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+}
+/* Позиции для каждого изображения */
+.top-left {
+    top: 550px;
+    left: 500px;
+    transform: rotate(25deg);
+}
+
+.top-right {
+    top: 500px;
+    right: 400px;
+    transform: rotate(-25deg);
+}
+
+.bottom-left {
+    bottom: 600px;
+    left: 200px;
+    transform: rotate(15deg);
+    height: 600px;
+    width: 300px
+}
+
+.bottom-right {
+    bottom: 500px;
+    right: 300px;
+}
+/* Для мобильных устройств (экран до 480px) */
+@media (max-width: 480px) {
+    .topics h3 {
+        font-size: clamp(1rem, 3vw, 4rem); /* Ещё меньше текст */
+    }
+
+    .corner-image {
+        width: 30vw; /* Ещё больше масштабируем изображения */
+    }
+
+    .top-left {
+        top: 10%;
+        left: 10%;
+    }
+
+    .top-right {
+        top: 10%;
+        right: 10%;
+    }
+
+    .bottom-left {
+        bottom: 10%;
+        left: 10%;
+    }
+
+    .bottom-right {
+        bottom: 10%;
+        right: 10%;
+    }
+}
+/* FOOTER */
+.footer {
+    position: relative;
+    width: 100%; /* Футер на всю ширину страницы */
+    height: auto; /* Высота футера зависит от содержимого */
+    margin-top: 0; /* Убираем отступ сверху */
+    padding: 20px 0; /* Внутренние отступы сверху и снизу */
+    text-align: center; /* Центрируем содержимое */
+}
+
+/* Картинка в футере */
+.footer .footer-image {
+    display: block;
+    margin: 0 auto; /* Центрируем картинку */
+    max-width: 2300px; /* Максимальная ширина картинки */
+    height: auto; /* Сохраняем пропорции */
+}
+
+/* Текстовый контейнер */
+.footer-content {
+    position: relative; /* Относительное позиционирование */
+    margin-top: 20px; /* Отступ между картинкой и текстом */
+    width: 100%;
+    height: 200px; /* Ограничиваем высоту для позиционирования */
+    z-index: 1;
+}
+
+/* Общие стили для параграфов */
+.footer-content p {
+    position: absolute; /* Абсолютное позиционирование внутри контейнера */
+    margin: 0;
+    font-size: 2rem; /* Размер текста */
+    line-height: 1.8; /* Удобное расстояние между строками */
+    color: white; /* Цвет текста */
+}
+
+/* Уникальная позиция для каждого параграфа */
+.footer-content .school {
+    top: -115%; /* Смещение сверху */
+    left: 17.5%; /* Смещение слева */
+}
+
+.footer-content .practice {
+    top: -100%; /* Смещение сверху */
+    left: 32.4%; /* Смещение справа */
+}
+
+.footer-content .group {
+   top: -100%; /* Смещение снизу */
+   left: 47%; /* Смещение слева */
+}
+
+.footer-content .name {
+    top: -100%; /* Смещение ближе к нижней границе */
+    right: 32.5%; /* Смещение справа */
+}
+/* Общий стиль для добавленных изображений */
+.footer-icon {
+    position: absolute;
+    width: 220px; /* Размер изображения */
+    height: 230px;
+    z-index: 2; /* Поверх фона, но ниже текста */
+        animation: spin 3s linear infinite; /* Вращение с равномерной скоростью */
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg); /* Начальная позиция */
+        }
+        100% {
+            transform: rotate(360deg); /* Полный оборот */
+        }
+    }
+
+/* Позиции для двух изображений */
+.footer-icon.logo {
+    top: 70px; /* Смещение от верхнего края */
+    right: 460px; /* Смещение от левого края */
+}
+
+.footer-icon.sur {
+    top: 410px; /* Смещение от нижнего края */
+    right: 460px; /* Смещение от правого края */
+}
+/* Для экранов меньше 768px (планшеты) */
+@media (max-width: 768px) {
+    .footer-content p {
+        font-size: 1.2rem; /* Уменьшаем размер текста */
+    }
+
+    .footer-icon {
+        width: 15vw; /* Увеличиваем размер изображений */
+    }
+
+    .footer-icon.logo {
+        top: 10%; /* Увеличиваем отступы */
+        left: 10%;
+    }
+
+    .footer-icon.sur {
+        bottom: 10%;
+        right: 10%;
+    }
+}
+
+/* Для экранов меньше 480px (мобильные устройства) */
+@media (max-width: 480px) {
+    .footer-content p {
+        font-size: 1rem; /* Ещё меньше текст */
+        line-height: 1.5; /* Уменьшаем расстояние между строками */
+    }
+
+    .footer-icon {
+        width: 20vw; /* Увеличиваем размер иконок */
+    }
+
+    .footer-icon.logo {
+        top: 15%; /* Увеличиваем отступы */
+        left: 15%;
+    }
+
+    .footer-icon.sur {
+        bottom: 15%;
+        right: 15%;
+    }
+}
